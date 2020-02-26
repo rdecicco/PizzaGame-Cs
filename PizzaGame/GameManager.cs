@@ -134,10 +134,9 @@ namespace PizzaGame
 
             for (uint i = 1; i < 4; i++)
             {
-                if (i != otherPlayer.LastNumberOfEatenPizzas)
+                if (i != otherPlayer.LastNumberOfEatenPizzas && i <= gameViewModel.NrOfPizzas)
                 {
-                    if (i < gameViewModel.NrOfPizzas && gameViewModel.NrOfPizzas > 2)
-                        return false;
+                    return false;
                 }
             }
 
