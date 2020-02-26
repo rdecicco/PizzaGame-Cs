@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="PizzaGame.PlayerUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PizzaGame"
+             mc:Ignorable="d" 
+             d:DesignHeight="225" d:DesignWidth="200"
+             x:Name="playerUserControl">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVisibilityConverter"/>
+        <local:BooleanAndConverter x:Key="booleanAndConverter" />        
+    </UserControl.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding PlayerName}" Visibility="{Binding IsVisible, Converter={StaticResource boolToVisibilityConverter}}"  TextAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Margin="5,2,5,2"/>
+        <ComboBox ItemsSource="{Binding EatablePizzas}" Visibility="{Binding IsVisible, Converter={StaticResource boolToVisibilityConverter}}"  SelectedValue="{Binding SelectedNumberOfPizzas}" IsEnabled="{Binding IsCurrentPlayer}" Grid.Row="1" Margin="5,2,5,2"/>
+        <Button Content="Confirm"  IsEnabled="{Binding IsCurrentPlayer}" Visibility="{Binding IsVisible, Converter={StaticResource boolToVisibilityConverter}}"  Grid.Row="2" Margin="5,2,5,2" Name="Confirm" Click="ConfirmClicked"/>
+        <Button Content="Pass" Visibility="{Binding IsVisible, Converter={StaticResource boolToVisibilityConverter}}" Grid.Row="3" Margin="5,2,5,2"  Name="Pass" Click="PassClicked">
+            <Button.IsEnabled>
+                <MultiBinding  Converter="{StaticResource booleanAndConverter}">
+                    <Binding Path="IsCurrentPlayer"/>
+                    <Binding Path="CanPass"/>
+                </MultiBinding>
+            </Button.IsEnabled>
+        </Button>
+    </Grid>
+</UserControl>
