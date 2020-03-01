@@ -7,6 +7,8 @@ namespace PizzaGame
 {
     public class PlayerViewModel : INotifyPropertyChanged
     {
+        public delegate bool EatPizzasDelegate(int NrOfPizzas);
+
         private PlayerModel Player;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -25,6 +27,8 @@ namespace PizzaGame
         {
             Player = new PlayerModel(playerId, playerName);
         }
+
+        public EatPizzasDelegate EatPizzasMethod { get; set; }
 
         public Int32 PlayerId
         {

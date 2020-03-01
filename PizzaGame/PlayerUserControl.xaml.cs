@@ -54,12 +54,14 @@ namespace PizzaGame
 
         private void ConfirmClicked(object sender, RoutedEventArgs e)
         {
-            GameManager.GetInstance().EatPizzas(Player.SelectedNumberOfPizzas);
+            if (Player != null && Player.EatPizzasMethod != null)
+                Player.EatPizzasMethod(Player.SelectedNumberOfPizzas);
         }
 
         private void PassClicked(object sender, RoutedEventArgs e)
         {
-            GameManager.GetInstance().EatPizzas(0);
+            if (Player != null && Player.EatPizzasMethod != null)
+                Player.EatPizzasMethod(0);
         }
     }
 }

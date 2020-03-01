@@ -18,11 +18,13 @@ namespace PizzaGame
             gameViewModel.GameResult = "Game Over";
             Player1 = new PlayerViewModel(1, "Player A")
             {
+                EatPizzasMethod = EatPizzas,
                 IsCurrentPlayer = false,
                 IsVisible = false
             };
             Player2 = new PlayerViewModel(2, "Player B")
             {
+                EatPizzasMethod = EatPizzas,
                 IsCurrentPlayer = false,
                 IsVisible = false
             };
@@ -43,11 +45,13 @@ namespace PizzaGame
             gameViewModel.State = GameModel.GameStates.Play;
             Player1 = new PlayerViewModel(1, "Player A")
             {
+                EatPizzasMethod = EatPizzas,
                 IsCurrentPlayer = true,
                 IsVisible = true
             };
             Player2 = new PlayerViewModel(2, "Player B")
             {
+                EatPizzasMethod = EatPizzas,
                 IsCurrentPlayer = false,
                 IsVisible = true
             };
